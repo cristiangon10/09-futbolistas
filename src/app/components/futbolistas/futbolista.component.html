@@ -1,0 +1,125 @@
+<h3>Futbolistas <small>{{futbolista.Nombre}}</small></h3>
+<button [routerLink]="['futbolistas']" class="btn btn-outline-danger fadeIn fast mg">
+  Regresar
+</button>
+<button (click)="agregarNuevo(forma)" type="button" id="btnNnevo" class="btn btn-outline-primary mg" *ngIf="!isNuevo">
+  Nuevo
+</button>
+<hr>
+
+<div class="container">
+  <div class="fadeIn fast">
+
+      <div [ngSwitch]="estado">
+
+          <!-- <div class="alert alert-success" role="alert" *ngIf="(forma.valid == true) && forma.dirty">
+            Formulario Correcto
+          </div> -->
+        
+          <div class="alert alert-danger" role="alert" *ngIf="(forma.invalid == true) && forma.dirty">
+            Formulario Incorrecto
+          </div>
+        
+        </div>
+
+    <form (ngSubmit)="guardar()" #forma="ngForm">
+
+      <div class="row">
+        <div class="col-md-6">
+
+          <div class="form-group">
+            <label>Nombre</label>
+            <input [(ngModel)]="futbolista.Nombre" name="nombre" type="text" class="form-control tamaño" placeholder="Nombre del jugador"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label>Club</label>
+            <input [(ngModel)]="futbolista.Club" name="club" type="text" class="form-control" placeholder="Equipo de futbol"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label>Posicion</label>
+            <select [(ngModel)]="futbolista.Posicion" name="posicion" class="form-control">
+              <option value="Portero">Portero</option>
+              <option value="Lateral Izquierdo">Lateral Izquierdo</option>
+              <option value="Defensa Central Izquiero">Defensa Central Izquiero</option>
+              <option value="Defensa Central Derecho">Defensa Central Derecho</option>
+              <option value="Lateral Derecho">Lateral Derecho</option>
+              <option value="Carrilero">Carrilero</option>
+              <option value="Mediocampista Defensivo">Mediocampista Defensivo</option>
+              <option value="Mediocampista Central">Mediocampista Central</option>
+              <option value="Mediocampista Izquierdo">Mediocampista Izquierdo</option>
+              <option value="Mediocampista Derecho">Mediocampista Derecho</option>
+              <option value="Mediocampista Ofensivo">Mediocampista Ofensivo</option>
+              <option value="Media Punta">Media Punta</option>
+              <option value="Delantero Centro">Delantero Centro</option>
+              <option value="Puntero">Puntero</option>
+              <option value="Extremo Izquierdo">Extremo Izquierdo</option>
+              <option value="Extremo Derecho">Extremo Derecho</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Estado</label>
+
+            <select name="estado" class="form-control" [(ngModel)]="futbolista.Estado">
+              <option value="Activo">Activo</option>
+              <option value="Lesionado">Lesionado</option>
+            </select>
+          </div>
+        </div>
+
+
+
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Edad</label>
+            <input [(ngModel)]="futbolista.Edad" name="edad" min="0" max="100" type="number" class="form-control" placeholder="Edad del jugador"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label>Dorsal</label>
+            <input [(ngModel)]="futbolista.Dorsal" name="dorsal" min="1" max="100" type="number" class="form-control" placeholder="Dorsal del jugador"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label>Seleccion</label>
+            <input name="seleccion" type="text" name="equipo" class="form-control" [(ngModel)]="futbolista.Seleccion"
+              placeholder="Seleccion de futbol" required>
+          </div>
+
+        </div>
+
+        <div class="col-12">
+          <div class="form-group">
+            <button type="submit" class="btn btn-outline-primary" [disabled]="!forma.valid">
+              Guardar
+            </button>
+          </div>
+        </div>
+
+        
+
+      </div>
+    </form>
+  </div>
+
+</div>
+
+
+<p>Invalido: {{forma.invalid}}</p>
+<p>Valido: {{forma.valid}}</p>
+
+
+<!-- Casos -->
+<div [ngSwitch]="estado">
+  <div *ngSwitchCase="'danger'"></div>
+  <div *ngSwitchCase="'success'"></div>
+</div>
+
+

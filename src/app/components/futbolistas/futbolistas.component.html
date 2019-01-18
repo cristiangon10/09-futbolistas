@@ -1,0 +1,64 @@
+<h1>
+    Futbolistas <small>Profesionales</small>
+  </h1>
+  <hr>
+  
+  <div class="row animated fadeIn fast">
+    <div class="col-md-12 text-left">
+      <button class="btn btn btn-outline-primary mg" [routerLink]="['/futbolista','nuevo']">
+        Nuevo
+      </button>
+    </div>
+  </div>
+  
+  <div class="row fadeIn fast">
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <table class="table table-striped table-hover" style="white-space: pre;"  *ngIf="(futbolistas | keys).length>0">
+          <thead class="thead-inverse thead-dark">
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Edad</th>
+              <th>Club</th>
+              <th>Dorsal</th>
+              <th>Posicion</th>
+              <th>Seleccion</th>
+              <th>Estado</th>
+              <th>Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let f of futbolistas | keys; let i = index;">
+              <td>{{i+1}}</td>
+              <td>{{futbolistas[f].Nombre}}</td>
+              <td>{{futbolistas[f].Edad}}</td>
+              <td>{{futbolistas[f].Club}}</td>
+              <td>{{futbolistas[f].Dorsal}}</td>
+              <td>{{futbolistas[f].Posicion}}</td>
+              <td>{{futbolistas[f].Seleccion}}</td>
+              <td>{{futbolistas[f].Estado}}</td>
+              <td style="white-space: nowrap;">
+                <button [routerLink]="['/futbolista', f]" type="button" class="btn btn-outline-success mb">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button (click)="borrarHeroe(f)" type="button" class="btn btn-outline-danger">
+                    <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        
+
+        <div *ngIf="(futbolistas | keys).length === 0 && !loading" class="alert alert-info" role="alert">
+          <strong>No hay registros existentes</strong>
+        </div>
+
+        <div *ngIf="loading" class="alert alert-warning" role="alert">
+          <strong> Cargando...</strong>
+        </div>
+
+      </div>
+    </div>
+  </div>
